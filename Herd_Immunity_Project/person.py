@@ -1,6 +1,8 @@
 import random
 import pytest
 import virus
+from random import *
+
 
 class Person(object):
     ''' Person objects will populate the simulation. '''
@@ -25,7 +27,16 @@ class Person(object):
         '''
         # Only called if infection attribute is not None.
         # TODO:  Finish this method. Should return a Boolean
-        pass
+        rando_num = random()
+        death_rate = virus.mortality_rate
+        
+        if rando_num < death_rate:
+            self.is_alive = False
+        else:
+            self.is_alive = True
+            self.infection = None
+            self.is_vaccinated = True
+
 
     
 ''' These are simple tests to ensure that you are instantiating your Person class correctly. '''
