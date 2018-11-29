@@ -1,6 +1,6 @@
 import random
 import pytest
-# TODO: Import the virus class
+import virus
 
 
 class Person(object):
