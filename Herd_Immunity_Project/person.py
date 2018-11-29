@@ -1,7 +1,10 @@
 import random
 import pytest
 import virus
+<<<<<<< HEAD
 from random import *
+=======
+>>>>>>> virus
 
 
 class Person(object):
