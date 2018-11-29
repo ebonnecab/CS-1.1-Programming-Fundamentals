@@ -18,7 +18,7 @@ class Person(object):
         self._id = _id
         self.is_alive = True # Boolean
         self.is_vaccinated = is_vaccinated # Boolean
-        self.infection = None # Virus or None
+        self.infection = infection # Virus or None
 
     def did_survive_infection(self):
         ''' Generate a random number and compare to virus's mortality_rate.
@@ -64,7 +64,7 @@ def test_sick_person_instantiation():
 
     # TODO: complete your own assert statements that test
     # the values at each attribute
-    person = Person(1, False, infection=virus)
+    person = Person(1, False, infection = virus)
     assert person._id == 1
     assert person.is_alive == True
     assert person.is_vaccinated == False
