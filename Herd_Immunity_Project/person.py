@@ -15,9 +15,9 @@ class Person(object):
         should instantiate a Virus object and set it as the value
         self.infection. Otherwise, self.infection should be set to None.
         '''
-        self._id = None
+        self._id = _id
         self.is_alive = True # Boolean
-        self.is_vaccinated = None # Boolean
+        self.is_vaccinated = is_vaccinated # Boolean
         self.infection = None # Virus or None
 
     def did_survive_infection(self):
@@ -42,11 +42,11 @@ class Person(object):
     
 ''' These are simple tests to ensure that you are instantiating your Person class correctly. '''
 def test_vacc_person_instantiation():
-    person = Person(1, True)
+    person = Person(1, True, None)
     assert person._id == 1
     assert person.is_alive == True
     assert person.is_vaccinated == True
-    assert person.infection == False
+    assert person.infection == None
 
 
 def test_not_vacc_person_instantiation():
@@ -54,7 +54,7 @@ def test_not_vacc_person_instantiation():
     assert person._id == 2
     assert person.is_alive == True
     assert person.is_vaccinated == False
-    assert person.infection == False
+    assert person.infection == None
 
 
 def test_sick_person_instantiation():
@@ -64,10 +64,10 @@ def test_sick_person_instantiation():
 
     # TODO: complete your own assert statements that test
     # the values at each attribute
-    person = Person(1, False, virus)
+    person = Person(1, False, infection=virus)
     assert person._id == 1
     assert person.is_alive == True
     assert person.is_vaccinated == False
-    assert person.infection == True
+    assert person.infection == virus
     
 
