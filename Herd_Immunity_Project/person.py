@@ -29,13 +29,14 @@ class Person(object):
         # TODO:  Finish this method. Should return a Boolean
         rando_num = random()
         death_rate = virus.mortality_rate
-        
-        if rando_num < death_rate:
-            self.is_alive = False
-        else:
-            self.is_alive = True
-            self.infection = None
-            self.is_vaccinated = True
+        infection = self.infection
+        while infection == virus:
+            if rando_num < death_rate:
+                self.is_alive = False
+            else:
+                self.is_alive = True
+                self.infection = None
+                self.is_vaccinated = True
 
 
     
