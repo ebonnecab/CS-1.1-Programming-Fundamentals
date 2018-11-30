@@ -19,7 +19,7 @@ def test_virus_instantiation():
     assert virus.mortality_rate == 0.2
 
 
-def test_virus_instantiation():
+def test_virus_instantiation2():
     '''Check to make sure that the virus instantiator is working.'''
     virus = Virus("Death", 0.5, 1)
     assert virus.name == "Death"
@@ -27,7 +27,7 @@ def test_virus_instantiation():
     assert virus.mortality_rate == 1
 
 
-def test_virus_instantiation():
+def test_virus_instantiation3():
     '''Check to make sure that the virus instantiator is working.'''
     virus = Virus("Tile", 0.6, 0.8)
     assert virus.name == "Tile"
