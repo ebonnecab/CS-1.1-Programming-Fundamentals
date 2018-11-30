@@ -1,6 +1,7 @@
 import random
 import pytest
 from virus import Virus
+import virus
 
 
 class Person(object):
@@ -13,12 +14,6 @@ class Person(object):
         self.infection = infection
 
     def did_survive_infection(self):
-        ''' Generate a random number and compare to virus's mortality_rate.
-        If random number is smaller, person dies from the disease.
-        If Person survives, they become vaccinated and they have no infection.
-        '''
-        # Only called if infection attribute is not None.
-        # TODO:  Finish this method. Should return a Boolean
         random_num = random.randint(0, 1)
         if (random_num < self.infection.mortality_rate):
             return False
@@ -31,9 +26,7 @@ class Person(object):
 
 
 def test_vacc_person_instantiation():
-    # create some people to test if our init method works as expected
-    person = Person(1, True)
-
+    person = Person(1, True, None)
     assert person._id == 1
     assert person.is_alive == True
     assert person.is_vaccinated == True
@@ -49,7 +42,6 @@ def test_not_vacc_person_instantiation():
 
 
 def test_sick_person_instantiation():
-    # TODO: complete your own assert statements that test
     # the values at each attributes
     virus = Virus("Dysentery", 0.7, 0.2)
     person = Person(1, False, virus)
