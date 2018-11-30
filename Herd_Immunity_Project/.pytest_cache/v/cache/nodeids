@@ -1,3 +1,9 @@
 [
+<<<<<<< HEAD
   "virus.py::test_virus_instantiation"
+=======
+  "person.py::test_vacc_person_instantiation", 
+  "person.py::test_not_vacc_person_instantiation", 
+  "person.py::test_sick_person_instantiation"
+>>>>>>> 2b82032da9337de35329622e6908bc0003a79a33
 ]
