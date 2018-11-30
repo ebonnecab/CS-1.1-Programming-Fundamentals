@@ -21,16 +21,16 @@ class Simulation(object):
         # TODO: Store each newly infected person's ID in newly_infected attribute.
         # At the end of each time step, call self._infect_newly_infected()
         # and then reset .newly_infected back to an empty list.
-        self.logger = Logger("interaction.txt")
+        self.logger = Logger("interactions.txt")
         self.population = []  # List of Person objects
-        self.pop_size = pop_size
+        self.pop_size = pop_size  # Int
         self.next_person_id = 0
         self.virus = virus
-        self.initial_infected = initial_infected
+        self.initial_infected = initial_infected  # Int
         self.total_infected = 0
         self.current_infected = 0
         self.vacc_percentage = vacc_percentage  # float between 0 and 1
-        self.total_dead = 0
+        self.total_dead = 0  # Int
         self.file_name = "{}_simulation_pop_{}_vp_{}_infected_{}.txt".format(
             virus_name, pop_size, vacc_percentage, initial_infected)
         self.newly_infected = []
@@ -54,8 +54,10 @@ class Simulation(object):
             Returns:
                 bool: True for simulation should continue, False if it should end.
         '''
-        # TODO: Complete this helper method.  Returns a Boolean.
-        pass
+        while self.pop_size > 0 or self.vacc_percentage == 1:
+            return True
+        else:
+            return False
 
     def run(self):
         ''' This method should run the simulation until all requirements for ending
