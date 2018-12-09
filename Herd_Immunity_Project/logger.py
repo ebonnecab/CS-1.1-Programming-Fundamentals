@@ -1,3 +1,8 @@
+import csv
+from virus import Virus
+from person import Person
+from simulation import Simulation
+
 class Logger:
     ''' Utility class responsible for logging all interactions during the simulation. '''
     # TODO: Write a test suite for this class to make sure each method is working
@@ -9,16 +14,22 @@ class Logger:
     def __init__(self, file_name):
         # TODO:  Finish this initialization method. The file_name passed should be the
         # full file name of the file that the logs will be written to.
-        self.file_name = None
+        self.file_name = file_name
 
     def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
-                       basic_repro_num):
+                       repro_rate):
         '''
         The simulation class should use this method immediately to log the specific
         parameters of the simulation as the first line of the file.
         '''
         # TODO: Finish this method. This line of metadata should be tab-delimited
         # it should create the text file that we will store all logs in.
+        if __name__ == "__main__":
+               	file = open("interactions.txt","w+")
+                for i in range(10):
+                    file.append("Population size: {}\n, Percentage of vaccinated people: {}\n, Virus Name: {}\n, Mortality Rate: {}\n, Reproductive Rate: {}\n".format(Simulation.pop_size, Simulation.vacc_percentage, Virus.virus_name, Virus.mortality_rate, Virus.repro_rate)) (i+1)
+
+                file.close()
         # TIP: Use 'w' mode when you open the file. For all other methods, use
         # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
@@ -73,3 +84,6 @@ class Logger:
         # new one begins.
         # NOTE: Here is an opportunity for a stretch challenge!
         pass
+
+    if __name__ == "__main__":
+        write_metadata("logger.py", 100, 0.2, "MRSA", 0.2, 0.2 )
