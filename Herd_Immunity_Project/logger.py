@@ -1,3 +1,6 @@
+from virus import Virus
+
+
 class Logger:
     ''' Utility class responsible for logging all interactions during the simulation. '''
     # TODO: Write a test suite for this class to make sure each method is working
@@ -8,6 +11,10 @@ class Logger:
 
     def __init__(self, file_name):
         self.file_name = file_name
+
+    def write_to_file(self, data, mode):
+        with open(self.file_name, mode) as file:
+            file.writelines(data)
 
     def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate, basic_repro_num):
         '''
@@ -20,13 +27,13 @@ class Logger:
         with open(self.file_name, "w") as file:
             file.writelines(data)
 
-            # TODO: Finish this method. This line of metadata should be tab-delimited
-            # it should create the text file that we will store all logs in.
-            # TIP: Use 'w' mode when you open the file. For all other methods, use
-            # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
-            # NOTE: Make sure to end every line with a '/n' character to ensure that each
-            # event logged ends up on a separate line!
-            pass
+        # TODO: Finish this method. This line of metadata should be tab-delimited
+        # it should create the text file that we will store all logs in.
+        # TIP: Use 'w' mode when you open the file. For all other methods, use
+        # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
+        # NOTE: Make sure to end every line with a '/n' character to ensure that each
+        # event logged ends up on a separate line!
+        pass
 
     def log_interaction(self, person, random_person, random_person_sick=None,
                         random_person_vacc=None, did_infect=None):
