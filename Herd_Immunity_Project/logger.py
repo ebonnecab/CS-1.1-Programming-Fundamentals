@@ -7,23 +7,26 @@ class Logger:
     # test them one by one as you write your class.
 
     def __init__(self, file_name):
-        # TODO:  Finish this initialization method. The file_name passed should be the
-        # full file name of the file that the logs will be written to.
-        self.file_name = None
+        self.file_name = file_name
 
-    def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
-                       basic_repro_num):
+    def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate, basic_repro_num):
         '''
         The simulation class should use this method immediately to log the specific
         parameters of the simulation as the first line of the file.
         '''
-        # TODO: Finish this method. This line of metadata should be tab-delimited
-        # it should create the text file that we will store all logs in.
-        # TIP: Use 'w' mode when you open the file. For all other methods, use
-        # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
-        # NOTE: Make sure to end every line with a '/n' character to ensure that each
-        # event logged ends up on a separate line!
-        pass
+        data = ["Virus name: {}".format(
+            virus_name), "Population size: {}".format(pop_size), "Vaccination Percentage: {}".format(vacc_percentage), "Mortality Rate: {}".format(mortality_rate), "Basic reproduction number: {} \n".format(basic_repro_num)]
+
+        with open(self.file_name, "w") as file:
+            file.writelines(data)
+
+            # TODO: Finish this method. This line of metadata should be tab-delimited
+            # it should create the text file that we will store all logs in.
+            # TIP: Use 'w' mode when you open the file. For all other methods, use
+            # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
+            # NOTE: Make sure to end every line with a '/n' character to ensure that each
+            # event logged ends up on a separate line!
+            pass
 
     def log_interaction(self, person, random_person, random_person_sick=None,
                         random_person_vacc=None, did_infect=None):
@@ -45,14 +48,16 @@ class Logger:
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
         call of a Person object's .resolve_infection() method.
-
-        The format of the log should be:
-            "{person.ID} died from infection\n" or "{person.ID} survived infection.\n"
         '''
-        # TODO: Finish this method. If the person survives, did_die_from_infection
-        # should be False.  Otherwise, did_die_from_infection should be True.
-        # Append the results of the infection to the logfile
-        pass
+        with open(self.file_name, "a") as file:
+            if person.is_alive:
+                file.writelines(
+                    ["{} survived infection \n".format(person._id)])
+                did_die_from_infection = False
+            else:
+                file.writelines(
+                    ["{} died from infection \n".format(person._id)])
+                did_die_from_infection = True
 
     def log_time_step(self, time_step_number):
         ''' STRETCH CHALLENGE DETAILS:

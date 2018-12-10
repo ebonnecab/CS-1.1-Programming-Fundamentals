@@ -36,7 +36,7 @@ class Simulation(object):
             virus_name, pop_size, vacc_percentage, initial_infected)
 
     def _create_population(self, initial_infected):
-
+        return self.population
         # TODO: Finish this method!  This method should be called when the simulation
         # begins, to create the population that will be used. This method should return
         # an array filled with Person objects that matches the specifications of the
@@ -77,17 +77,6 @@ class Simulation(object):
         return random.choice(self.newly_infected)
 
     def time_step(self):
-        ''' This method should contain all the logic for computing one time step
-     in the simulation.
-
-     This includes:
-         1. 100 total interactions with a random person for each infected person
-             in the population
-         2. If the person is dead, grab another random person from the population.
-             Since we don't interact with dead people, this does not count as an interaction.
-         3. Otherwise call simulation.interaction(person, random_person) and
-             increment interaction counter by 1.
-     '''
         rand_infected_person = self.choose_infected()
         rand_person = random.choice(self.population)
         tot_interactions = 0
@@ -110,24 +99,21 @@ class Simulation(object):
             person1 (person): The initial infected person
             random_person (person): The person that person1 interacts with.
         '''
+        if random_person.is_vaccinated():
+            pass
+        elif random_person.infection == self.virus:
+            pass
+        elif random_person.is_vaccinated() == False:
+            num = random.randint(0, 1)
+            if num < self.virus.repro_rate:
+                self.newly_infected.append(random_person._id)
 
-        # TODO: Finish this method.
-        #  The possible cases you'll need to cover are listed below:
-        # random_person is vaccinated:
-        #     nothing happens to random person.
-        # random_person is already infected:
-        #     nothing happens to random person.
-        # random_person is healthy, but unvaccinated:
-        #     generate a random number between 0 and 1.  If that number is smaller
-        #     than repro_rate, random_person's ID should be appended to
-        #     Simulation object's newly_infected array, so that their .infected
-        #     attribute can be changed to True at the end of the time step.
-        # TODO: Call logger method during this method.
+            # TODO: Finish this method.d
+            #     attribute can be changed to True at the end of the time step.
+            # TODO: Call logger method during this method.
         pass
 
     def _infect_newly_infected(self):
-        ''' This method should iterate through the list of ._id stored in self.newly_infected
-        and update each Person object with the disease. '''
         for person in self.newly_infected:
             person.infection = self.virus
         self.newly_infected = list()
