@@ -44,10 +44,7 @@ class Logger:
         or the other edge cases:
             "{person.ID} didn't infect {random_person.ID} because {'vaccinated' or 'already sick'} \n"
         '''
-        '''sick_person
-            vacc_person
-
-        '''
+        
         random_sick_person = person.infection == Virus
         random_vacc_person = person.is_vaccinated
 
