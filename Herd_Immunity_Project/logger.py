@@ -50,24 +50,25 @@ class Logger:
         '''
 
         with open(self.file_name, "a") as file:
-        
-            if random_sick_person and random_vacc_person == None and did_infect == True:
-                file.writelines(
-                    ["{} infects {} \n because they are not vaccinated.".format(person._id, random_person._id)]
-                )
 
-            elif random_sick_person and random_vacc_person == None and did_infect == False:
-                file.writelines(
-                    ["{} did not infect {} \n because of good fortune.".format(person._id, random_person._id)]
-                )
-            elif random_sick_person and random_vacc_person and did_infect == False:
-                file.writelines(
-                    ["{} did not infect {} \n they are vaccinated.".format(person._id, random_person._id)]
-                )
-            elif random_sick_person and random_sick_person and did_infect == False:
-                file.writelines (
-                    ["{} did not infect {} \n they are already sick.".format(person._id, random_person._id)]
-                )
+            for person in range(100):
+                if random_sick_person and random_vacc_person == None and did_infect == True:
+                    file.writelines(
+                        ["{} infects {} \n because they are not vaccinated.".format(person._id, random_person._id)]
+                    )
+
+                elif random_sick_person and random_vacc_person == None and did_infect == False:
+                    file.writelines(
+                        ["{} did not infect {} \n because of good fortune.".format(person._id, random_person._id)]
+                    )
+                elif random_sick_person and random_vacc_person and did_infect == False:
+                    file.writelines(
+                        ["{} did not infect {} \n they are vaccinated.".format(person._id, random_person._id)]
+                    )
+                elif random_sick_person and random_sick_person and did_infect == False:
+                    file.writelines (
+                        ["{} did not infect {} \n they are already sick.".format(person._id, random_person._id)]
+                    )
                 
         # TODO: Finish this method. Think about how the booleans passed (or not passed)
         # represent all the possible edge cases. Use the values passed along with each person,
