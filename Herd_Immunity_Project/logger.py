@@ -117,11 +117,3 @@ def test_log_infection_survival():
     logger = Logger("interactions.txt")
     virus = Virus("Snapple", 0.2, 0.4)
     person = Person(1, True, virus)
-    '''
-        The format of this log should be:
-            "Time step {time_step_number} ended, beginning {time_step_number + 1}\n"
-        '''
-    # TODO: Finish this method. This method should log when a time step ends, and a
-    # new one begins.
-    # NOTE: Here is an opportunity for a stretch challenge!
-    pass
