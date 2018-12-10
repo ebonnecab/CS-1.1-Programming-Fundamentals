@@ -1,9 +1,5 @@
 [
-<<<<<<< HEAD
-  "virus.py::test_virus_instantiation"
-=======
-  "person.py::test_vacc_person_instantiation", 
-  "person.py::test_not_vacc_person_instantiation", 
-  "person.py::test_sick_person_instantiation"
->>>>>>> 2b82032da9337de35329622e6908bc0003a79a33
+  "logger.py::test_write_metadata",
+  "logger.py::test_log_time_step",
+  "logger.py::test_log_infection_survival"
 ]
