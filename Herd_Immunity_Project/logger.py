@@ -61,7 +61,7 @@ class Logger:
 
     def log_time_step(self, time_step_number):
         ''' STRETCH CHALLENGE DETAILS:
-
+wqe
         If you choose to extend this method, the format of the summary statistics logged
         are up to you.
 
