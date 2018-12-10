@@ -44,27 +44,30 @@ class Logger:
         or the other edge cases:
             "{person.ID} didn't infect {random_person.ID} because {'vaccinated' or 'already sick'} \n"
         '''
-        
-        random_sick_person = person.infection == Virus
-        random_vacc_person = person.is_vaccinated
+        '''sick_person
+            vacc_person
+
+        '''
+        sick_person = person.infection == Virus
+        random_sick_person = random_person.infection == Virus
+        random_vacc_person = random_person.is_vaccinated
 
         with open(self.file_name, "a") as file:
 
-            for person in range(100):
-                if random_sick_person and random_vacc_person == None and did_infect == True:
+                if sick_person and random_vacc_person == None and did_infect == True:
                     file.writelines(
-                        ["{} infects {} \n because they are not vaccinated and bad luck.".format(person._id, random_person._id)]
+                        ["{} infects {} \n because they are not vaccinated.".format(person._id, random_person._id)]
                     )
 
-                elif random_sick_person and random_vacc_person == None and did_infect == False:
+                elif sick_person and random_vacc_person == None and did_infect == False:
                     file.writelines(
                         ["{} did not infect {} \n because of good fortune.".format(person._id, random_person._id)]
                     )
-                elif random_sick_person and random_vacc_person and did_infect == False:
+                elif sick_person and random_vacc_person and did_infect == False:
                     file.writelines(
                         ["{} did not infect {} \n they are vaccinated.".format(person._id, random_person._id)]
                     )
-                elif random_sick_person and random_sick_person and did_infect == False:
+                elif sick_person and random_sick_person and did_infect == False:
                     file.writelines (
                         ["{} did not infect {} \n they are already sick.".format(person._id, random_person._id)]
                     )
