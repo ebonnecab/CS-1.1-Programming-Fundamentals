@@ -1,5 +1,8 @@
 from virus import Virus
 import pytest
+from virus import Virus
+# from person import Person
+# from simulation import Simulation
 
 
 class Logger:
@@ -31,8 +34,8 @@ class Logger:
         # event logged ends up on a separate line!
         pass
 
-    def log_interaction(self, person, random_person, random_person_sick=None,
-                        random_person_vacc=None, did_infect=None):
+    def log_interaction(self, person, random_person, random_sick_person=None,
+                        random_vacc_person=None, did_infect=None):
         '''
         The Simulation object should use this method to log every interaction
         a sick person has during each time step.
@@ -42,11 +45,42 @@ class Logger:
         or the other edge cases:
             "{person.ID} didn't infect {random_person.ID} because {'vaccinated' or 'already sick'} \n"
         '''
+        '''sick_person
+            vacc_person
+
+        '''
+        sick_person = person.infection == Virus
+        random_sick_person = random_person.infection == Virus
+        random_vacc_person = random_person.is_vaccinated
+
+        with open(self.file_name, "a") as file:
+
+            if sick_person and random_vacc_person == None and did_infect == True:
+                file.writelines(
+                    ["{} infects {} \n because they are not vaccinated.".format(
+                        person._id, random_person._id)]
+                )
+
+            elif sick_person and random_vacc_person == None and did_infect == False:
+                file.writelines(
+                    ["{} did not infect {} \n because of good fortune.".format(
+                        person._id, random_person._id)]
+                )
+            elif sick_person and random_vacc_person and did_infect == False:
+                file.writelines(
+                    ["{} did not infect {} \n they are vaccinated.".format(
+                        person._id, random_person._id)]
+                )
+            elif sick_person and random_sick_person and did_infect == False:
+                file.writelines(
+                    ["{} did not infect {} \n they are already sick.".format(
+                        person._id, random_person._id)]
+                )
+
         # TODO: Finish this method. Think about how the booleans passed (or not passed)
         # represent all the possible edge cases. Use the values passed along with each person,
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
-        pass
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
@@ -83,3 +117,11 @@ def test_log_infection_survival():
     logger = Logger("interactions.txt")
     virus = Virus("Snapple", 0.2, 0.4)
     person = Person(1, True, virus)
+    '''
+        The format of this log should be:
+            "Time step {time_step_number} ended, beginning {time_step_number + 1}\n"
+        '''
+    # TODO: Finish this method. This method should log when a time step ends, and a
+    # new one begins.
+    # NOTE: Here is an opportunity for a stretch challenge!
+    pass

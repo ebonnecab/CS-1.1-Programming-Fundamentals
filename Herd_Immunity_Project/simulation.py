@@ -16,11 +16,6 @@ class Simulation(object):
     '''
 
     def __init__(self, pop_size, vacc_percentage, initial_infected=1, virus=None):
-        # TODO: Call self._create_population() and pass in the correct parameters.
-        # Store the array that this method will return in the self.population attribute.
-        # TODO: Store each newly infected person's ID in newly_infected attribute.
-        # At the end of each time step, call self._infect_newly_infected()
-        # and then reset .newly_infected back to an empty list.
         self.logger = Logger("interactions.txt")
         self.population = []  # List of Person objects
         self.pop_size = pop_size  # Int
