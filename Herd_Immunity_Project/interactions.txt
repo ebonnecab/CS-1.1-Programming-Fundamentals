@@ -1,1 +1,5 @@
-
+Population size: pop size
+, Percentage of vaccinated people: vaccinated people
+, Virus Name: virus name
+, Mortality Rate: mortality rate
+, Reproductive Rate: repro rate

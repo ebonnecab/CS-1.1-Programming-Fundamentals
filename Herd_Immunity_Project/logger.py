@@ -1,7 +1,7 @@
 import csv
-from virus import Virus
-from person import Person
-from simulation import Simulation
+# from virus import Virus
+# from person import Person
+# from simulation import Simulation
 
 class Logger:
     ''' Utility class responsible for logging all interactions during the simulation. '''
@@ -27,8 +27,7 @@ class Logger:
         if __name__ == "__main__":
                	file = open("interactions.txt","w+")
                 for i in range(10):
-                    file.append("Population size: {}\n, Percentage of vaccinated people: {}\n, Virus Name: {}\n, Mortality Rate: {}\n, Reproductive Rate: {}\n".format(Simulation.pop_size, Simulation.vacc_percentage, Virus.virus_name, Virus.mortality_rate, Virus.repro_rate)) (i+1)
-
+                    file.write("Population size: {}\n, Percentage of vaccinated people: {}\n, Virus Name: {}\n, Mortality Rate: {}\n, Reproductive Rate: {}\n".format("pop size", "vaccinated people", "virus name", "mortality rate", "repro rate")) (i+1)
                 file.close()
         # TIP: Use 'w' mode when you open the file. For all other methods, use
         # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
@@ -86,4 +85,4 @@ class Logger:
         pass
 
     if __name__ == "__main__":
-        write_metadata("logger.py", 100, 0.2, "MRSA", 0.2, 0.2 )
+        write_metadata("logger", 100, 0.2, "MRSA", 0.2, 0.2 )

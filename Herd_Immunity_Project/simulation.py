@@ -51,7 +51,7 @@ class Simulation(object):
             Returns:
                 bool: True for simulation should continue, False if it should end.
         '''
-            while self.pop_size > 0 or not self.vacc_percentage == 1:
+        while self.pop_size > 0 or not self.vacc_percentage == 1:
             return True
         else:
             return False
