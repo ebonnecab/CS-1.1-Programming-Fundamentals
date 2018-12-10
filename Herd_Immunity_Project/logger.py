@@ -14,8 +14,8 @@ class Logger:
         The simulation class should use this method immediately to log the specific
         parameters of the simulation as the first line of the file.
         '''
-        data = ["Virus name: {}".format(
-            virus_name), "Population size: {}".format(pop_size), "Vaccination Percentage: {}".format(vacc_percentage), "Mortality Rate: {}".format(mortality_rate), "Basic reproduction number: {} \n".format(basic_repro_num)]
+        data = ["Virus name: {} \t".format(
+            virus_name), "Population size: {} \t".format(pop_size), "Vaccination Percentage: {} \t".format(vacc_percentage), "Mortality Rate: {}\t".format(mortality_rate), "Basic reproduction number: {}\t \n".format(basic_repro_num)]
 
         with open(self.file_name, "w") as file:
             file.writelines(data)
@@ -33,6 +33,7 @@ class Logger:
         '''
         The Simulation object should use this method to log every interaction
         a sick person has during each time step.
+
 
         The format of the log should be: "{person.ID} infects {random_person.ID} \n"
 
