@@ -48,6 +48,8 @@ class Logger:
             vacc_person
 
         '''
+        random_sick_person = person.infection == Virus
+        random_vacc_person = person.is_vaccinated
 
         with open(self.file_name, "a") as file:
 
