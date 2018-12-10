@@ -53,7 +53,7 @@ class Logger:
             for person in range(100):
                 if random_sick_person and random_vacc_person == None and did_infect == True:
                     file.writelines(
-                        ["{} infects {} \n because they are not vaccinated.".format(person._id, random_person._id)]
+                        ["{} infects {} \n because they are not vaccinated and bad luck.".format(person._id, random_person._id)]
                     )
 
                 elif random_sick_person and random_vacc_person == None and did_infect == False:
