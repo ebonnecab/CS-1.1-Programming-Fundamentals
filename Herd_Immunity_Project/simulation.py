@@ -26,14 +26,12 @@ class Simulation(object):
         self.current_infected = 0
         self.vacc_percentage = vacc_percentage  # float between 0 and 1
         self.total_dead = 0  # Int
+        self.newly_infected = []
         self.file_name = "{}_simulation_pop_{}_vp_{}_infected_{}.txt".format(
             virus_name, pop_size, vacc_percentage, initial_infected)
-        self.newly_infected = []
 
     def _create_population(self, initial_infected):
-
-
-
+        return self.population
         # TODO: Finish this method!  This method should be called when the simulation
         # begins, to create the population that will be used. This method should return
         # an array filled with Person objects that matches the specifications of the
@@ -45,12 +43,6 @@ class Simulation(object):
         pass
 
     def _simulation_should_continue(self):
-        ''' The simulation should only end if the entire population is dead
-        or everyone is vaccinated.
-
-            Returns:
-                bool: True for simulation should continue, False if it should end.
-        '''
         while self.pop_size > 0 or not self.vacc_percentage == 1:
             return True
         else:
@@ -76,22 +68,25 @@ class Simulation(object):
             # print('The simulation has ended after {time_step_counter} turns.'.format(time_step_counter))
             pass
 
-    def time_step(self):
-        ''' This method should contain all the logic for computing one time step
-        in the simulation.
+    def choose_infected(self):
+        return random.choice(self.newly_infected)
 
-        This includes:
-            1. 100 total interactions with a randon person for each infected person
-                in the population
-            2. If the person is dead, grab another random person from the population.
-                Since we don't interact with dead people, this does not count as an interaction.
-            3. Otherwise call simulation.interaction(person, random_person) and
-                increment interaction counter by 1.
-            '''
-        # TODO: Finish this method.
-        pass
+    def time_step(self):
+        rand_infected_person = self.choose_infected()
+        rand_person = random.choice(self.population)
+        tot_interactions = 0
+        while tot_interactions <= 100:
+            if not rand_infected_person.is_alive():
+                self.choose_infected()
+            else:
+                self.interaction(rand_person, rand_infected_person)
+                tot_interactions += 1
 
     def interaction(self, person, random_person):
+        # Assert statements are to check if
+        assert person.is_alive == True
+        assert random_person.is_alive == True
+
         '''This method should be called any time two living people are selected for an
         interaction. It assumes that only living people are passed in as parameters.
 
@@ -99,31 +94,21 @@ class Simulation(object):
             person1 (person): The initial infected person
             random_person (person): The person that person1 interacts with.
         '''
-        # Assert statements are included to make sure that only living people are passed
-        # in as params
-        assert person.is_alive == True
-        assert random_person.is_alive == True
+        if random_person.is_vaccinated():
+            pass
+        elif random_person.infection == self.virus:
+            pass
+        elif random_person.is_vaccinated() == False:
+            num = random.randint(0, 1)
+            if num < self.virus.repro_rate:
+                self.newly_infected.append(random_person._id)
 
-        # TODO: Finish this method.
-        #  The possible cases you'll need to cover are listed below:
-        # random_person is vaccinated:
-        #     nothing happens to random person.
-        # random_person is already infected:
-        #     nothing happens to random person.
-        # random_person is healthy, but unvaccinated:
-        #     generate a random number between 0 and 1.  If that number is smaller
-        #     than repro_rate, random_person's ID should be appended to
-        #     Simulation object's newly_infected array, so that their .infected
-        #     attribute can be changed to True at the end of the time step.
-        # TODO: Call slogger method during this method.
+            # TODO: Finish this method.d
+            #     attribute can be changed to True at the end of the time step.
+            # TODO: Call logger method during this method.
         pass
 
     def _infect_newly_infected(self):
-        ''' This method should iterate through the list of ._id stored in self.newly_infected
-        and update each Person object with the disease. '''
-        # TODO: Call this method at the end of every time step and infect each Person.
-        # TODO: Once you have iterated through the entire list of self.newly_infected, remember
-        # to reset self.newly_infected back to an empty list.
         for person in self.newly_infected:
             person.infection = self.virus
         self.newly_infected = list()
