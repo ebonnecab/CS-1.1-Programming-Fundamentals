@@ -1,9 +1,21 @@
+<<<<<<< HEAD
 from virus import Virus
 import pytest
 from virus import Virus
 # from person import Person
 # from simulation import Simulation
 
+=======
+<<<<<<< HEAD
+from virus import Virus
+
+=======
+import csv
+from virus import Virus
+# from person import Person
+# from simulation import Simulation
+>>>>>>> e32737dd5c705ff9bbe8c69393628b001c42b78a
+>>>>>>> test
 
 class Logger:
     ''' Utility class responsible for logging all interactions during the simulation. '''
@@ -21,8 +33,17 @@ class Logger:
         The simulation class should use this method immediately to log the specific
         parameters of the simulation as the first line of the file.
         '''
+<<<<<<< HEAD
         data = ["=====================\nStats of the virus\n---------------------\nVirus name: {} \n".format(
             virus_name), "Population size: {} \n".format(pop_size), "Vaccination Percentage: {} \n".format(vacc_percentage), "Mortality Rate: {}\n".format(mortality_rate), "Basic reproduction number: {}\n=====================\n".format(basic_repro_num)]
+=======
+        data = ["Virus name: {} \t".format(
+<<<<<<< HEAD
+            virus_name), "Population size: {} \t".format(pop_size), "Vaccination Percentage: {} \t".format(vacc_percentage), "Mortality Rate: {} \t".format(mortality_rate), "Basic reproduction number: {} \n".format(basic_repro_num)]
+=======
+            virus_name), "Population size: {} \t".format(pop_size), "Vaccination Percentage: {} \t".format(vacc_percentage), "Mortality Rate: {}\t".format(mortality_rate), "Basic reproduction number: {}\t \n".format(basic_repro_num)]
+>>>>>>> e32737dd5c705ff9bbe8c69393628b001c42b78a
+>>>>>>> test
 
         with open(self.file_name, "w") as file:
             file.writelines(data)
@@ -96,9 +117,18 @@ class Logger:
                 did_die_from_infection = True
 
     def log_time_step(self, time_step_number):
+<<<<<<< HEAD
         with open(self.file_name, "a") as file:
             file.writelines(["Time step number {} ended, beginning {} \n".format(
                 time_step_number, time_step_number + 1)])
+=======
+<<<<<<< HEAD
+        with open(self.file_name, "a") as file:
+            file.writelines(["Time step number {} ended, beginning {} \n".format(
+                time_step_number, time_step_number + 1)])
+=======
+        ''' STRETCH CHALLENGE DETAILS:
+>>>>>>> test
 
 
 def test_write_metadata():
@@ -111,8 +141,14 @@ def test_log_time_step():
     logger.log_time_step(10)
 
 
+<<<<<<< HEAD
 def test_log_infection_survival():
     from person import Person
     logger = Logger("interactions.txt")
     virus = Virus("Snapple", 0.2, 0.4)
     person = Person(1, True, virus)
+=======
+    if __name__ == "__main__":
+        write_metadata("logger", 100, 0.2, "MRSA", 0.2, 0.2 )
+>>>>>>> e32737dd5c705ff9bbe8c69393628b001c42b78a
+>>>>>>> test
