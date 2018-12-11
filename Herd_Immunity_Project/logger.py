@@ -1,17 +1,12 @@
-from virus import Virus
 import pytest
-from virus import Virus
-# from person import Person
-# from simulation import Simulation
+import random
+from person import Person
+from simulation import Simulation
+from virus import Virus as virus
 
 
 class Logger:
     ''' Utility class responsible for logging all interactions during the simulation. '''
-    # TODO: Write a test suite for this class to make sure each method is working
-    # as expected.
-
-    # PROTIP: Write your tests before you solve each function, that way you can
-    # test them one by one as you write your class.
 
     def __init__(self, file_name):
         self.file_name = file_name
@@ -26,13 +21,6 @@ class Logger:
 
         with open(self.file_name, "w") as file:
             file.writelines(data)
-        # TODO: Finish this method. This line of metadata should be tab-delimited
-        # it should create the text file that we will store all logs in.
-        # TIP: Use 'w' mode when you open the file. For all other methods, use
-        # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
-        # NOTE: Make sure to end every line with a '/n' character to ensure that each
-        # event logged ends up on a separate line!
-        pass
 
     def append_interaction(self, data, mode):
         with open("interactions.txt", mode) as file:
@@ -43,39 +31,31 @@ class Logger:
         '''
         The Simulation object should use this method to log every interaction
         a sick person has during each time step.
-
         The format of the log should be: "{person.ID} infects {random_person.ID} \n"
-
         or the other edge cases:
-            "{person.ID} didn't infect {random_person.ID} because {'vaccinated' or 'already sick'} \n"
+        "{person.ID} didn't infect {random_person.ID} because {'vaccinated' or 'already sick'} \n"
         '''
-        '''sick_person
-            vacc_person
-
-        '''
-        sick_person = person.infection == Virus
-        random_sick_person = random_person.infection == Virus
-        random_vacc_person = random_person.is_vaccinated
-        with open(self.file_name, "a") as file:
-            if person.infection == Virus and not random_vacc_person and did_infect == True:
-                self.append_interaction([["{} infects {} \n because they are not vaccinated.".format(
-                    person._id, random_person._id)]], "a")
-
-            elif sick_person and not random_vacc_person and did_infect == False:
-                file.writelines(
-                    ["{} did not infect {} \n because of good fortune.".format(
-                        person._id, random_person._id)]
-                )
-            elif sick_person and random_vacc_person and did_infect == False:
-                file.writelines(
-                    ["{} did not infect {} \n they are vaccinated.".format(
-                        person._id, random_person._id)]
-                )
-            elif sick_person and random_sick_person and did_infect == False:
-                file.writelines(
-                    ["{} did not infect {} \n they are already sick.".format(
-                        person._id, random_person._id)]
-                )
+        if person.infection == virus and random_person.infection == virus:
+            did_infect = False
+            self.append_interaction(["Person {} didn't infect Person {} because they are already sick.\n".format(
+                person._id, random_person._id)], "a")
+        elif person.infection == virus and random_person.is_vaccinated == True:
+            did_infect = False
+            self.append_interaction(
+                ["Person {} did not infect Person{} because they are vaccinated".format(person._id, random_person._id)], "a")
+        elif person.infection == virus and random_person.is_vaccinated == False:
+            num = random.random()
+            if num < virus.repro_rate:
+                random_person.infection = virus
+                did_infect = True
+                self.append_interaction(["Person {} infected Person {} because they weren't vaccinated\n".format(
+                    person._id, random_person._id)], "a")
+            else:
+                self.append_interaction(["Person {} did not infect Person {} because they got luckyyyyy\n".format(
+                    person._id, random_person._id)], "a")
+                did_infect = False
+        else:
+            pass
 
         # TODO: Finish this method. Think about how the booleans passed (or not passed)
         # represent all the possible edge cases. Use the values passed along with each person,
@@ -114,6 +94,38 @@ def test_log_time_step():
 
 def test_log_infection_survival():
     from person import Person
+    from virus import Virus
     logger = Logger("interactions.txt")
     virus = Virus("Snapple", 0.2, 0.4)
     person = Person(1, True, virus)
+
+
+def test_log_interaction():
+    from person import Person
+    from virus import Virus
+    virus = Virus("Snapple", 0.2, 0.4)
+    person = Person(1, False, virus)
+    random_person = Person(2, False)
+    logger = Logger("test.txt")
+    if person.infection == virus and random_person.infection == virus:
+        logger.append_interaction(["Person {} did not infect Person {} because they are vaccinated\n".format(
+            person._id, random_person._id)], "a")
+    elif person.infection == virus and random_person.is_vaccinated:
+        logger.append_interaction(["Person {} did not infect Person {} because they are vaccinated\n".format(
+            person._id, random_person._id)], "a")
+
+    elif person.infection == virus and random_person.is_vaccinated == False:
+        num = random.random()
+        logger.append_interaction(["Random number {} - Virus Repro Rate {}\n".format(
+            num, virus.repro_rate)], "a")
+        if num < virus.repro_rate:
+            random_person.infection = virus
+            logger.append_interaction(["Person {} infected Person {} because they weren't vaccinated\n".format(
+                person._id, random_person._id)], "a")
+            did_infect = True
+        else:
+            logger.append_interaction(["Person {} did not infect Person {} because they got luckyyyyy\n".format(
+                person._id, random_person._id)], "a")
+            did_infect = False
+    else:
+        pass
