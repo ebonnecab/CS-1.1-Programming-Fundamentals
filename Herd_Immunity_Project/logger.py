@@ -21,7 +21,7 @@ class Logger:
         The simulation class should use this method immediately to log the specific
         parameters of the simulation as the first line of the file.
         '''
-        data = ["=====================\nStats of the virus\nVirus name: {} \n".format(
+        data = ["=====================\nStats of the virus\n---------------------\nVirus name: {} \n".format(
             virus_name), "Population size: {} \n".format(pop_size), "Vaccination Percentage: {} \n".format(vacc_percentage), "Mortality Rate: {}\n".format(mortality_rate), "Basic reproduction number: {}\n=====================\n".format(basic_repro_num)]
 
         with open(self.file_name, "w") as file:
@@ -33,6 +33,10 @@ class Logger:
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
         pass
+
+    def append_interaction(self, data, mode):
+        with open("interactions.txt", mode) as file:
+            file.writelines(data)
 
     def log_interaction(self, person, random_person, random_sick_person=None,
                         random_vacc_person=None, did_infect=None):
@@ -49,19 +53,14 @@ class Logger:
             vacc_person
 
         '''
-        sick_person = person.infection == Virus
         random_sick_person = random_person.infection == Virus
         random_vacc_person = random_person.is_vaccinated
-
         with open(self.file_name, "a") as file:
+            if person.infection == Virus and not random_vacc_person and did_infect == True:
+                self.append_interaction([["{} infects {} \n because they are not vaccinated.".format(
+                    person._id, random_person._id)]], "a")
 
-            if sick_person and random_vacc_person == None and did_infect == True:
-                file.writelines(
-                    ["{} infects {} \n because they are not vaccinated.".format(
-                        person._id, random_person._id)]
-                )
-
-            elif sick_person and random_vacc_person == None and did_infect == False:
+            elif sick_person and not random_vacc_person and did_infect == False:
                 file.writelines(
                     ["{} did not infect {} \n because of good fortune.".format(
                         person._id, random_person._id)]
