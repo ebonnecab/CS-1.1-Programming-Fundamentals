@@ -1,1 +1,4 @@
-{}
+{
+  "simulation.py": true,
+  "simulation.py::test_simulation_should_continue": true
+}

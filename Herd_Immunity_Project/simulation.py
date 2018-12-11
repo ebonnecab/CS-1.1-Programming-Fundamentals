@@ -27,8 +27,6 @@ class Simulation(object):
         self.vacc_percentage = vacc_percentage  # float between 0 and 1
         self.total_dead = 0  # Int
         self.newly_infected = []
-        self.file_name = "{}_simulation_pop_{}_vp_{}_infected_{}.txt".format(
-            virus_name, pop_size, vacc_percentage, initial_infected)
 
     def _create_population(self, initial_infected):
         return self.population
@@ -71,16 +69,23 @@ class Simulation(object):
     def choose_infected(self):
         return random.choice(self.newly_infected)
 
+    # Test later today in an index.py file
     def time_step(self):
-        rand_infected_person = self.choose_infected()
+        total_interactions = 0
+        # calling get_random_person method to randomly choose person from total population
         rand_person = random.choice(self.population)
-        tot_interactions = 0
-        while tot_interactions <= 100:
-            if not rand_infected_person.is_alive():
-                self.choose_infected()
-            else:
-                self.interaction(rand_person, rand_infected_person)
-                tot_interactions += 1
+        # looping through population to find infected person
+        for person in self.population:
+            if person.infection == virus:
+                # creates loop for sick person to interact with 100 randos
+                while total_interactions <= 100:
+                    # checking if rando is alive and calling interaction method
+                    if rand_person.is_alive:
+                        self.interaction(person, rand_person)
+                        total_interactions += 1
+                    else:
+                        # if they're dead the method starts over
+                        self.time_step()
 
     def append_newly_infected(self, random_person):
         if random_person.is_vaccinated() == False:
@@ -139,9 +144,3 @@ if __name__ == "__main__":
     sim = Simulation(pop_size, vacc_percentage, initial_infected, virus)
 
     sim.run()
-
-
-def test_simulation_should_continue():
-    simulation = Simulation(10000, .1)
-    pop_size = 100
-    vacc_percentage = 1
