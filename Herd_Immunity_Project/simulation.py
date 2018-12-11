@@ -22,6 +22,7 @@ class Simulation(object):
         self.next_person_id = 0
         self.virus = virus
         self.initial_infected = initial_infected  # Int
+        # FIXME: Use the variables below
         self.total_infected = 0
         self.current_infected = 0
         self.vacc_percentage = vacc_percentage  # float between 0 and 1
@@ -38,6 +39,7 @@ class Simulation(object):
 
         # Use the attributes created in the init method to create a population that has
         # the correct intial vaccination percentage and initial infected.
+        # This method should be a loop and go all the way up to the self.pop_size and randomly assign characteristics to the people we create like vaccinated_option = random.choice(True,False)
         pass
 
     def _simulation_should_continue(self):

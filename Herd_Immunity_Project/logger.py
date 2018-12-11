@@ -84,6 +84,7 @@ class Logger:
                 time_step_number, time_step_number + 1)])
 
 
+# FIXME: Add asserts
 def test_write_metadata():
     logger = Logger("interactions.txt")
     logger.write_metadata(100000, 0.4, "Snapple", 0.2, 0.3)
