@@ -1,5 +1,12 @@
-Population size: pop size
-, Percentage of vaccinated people: vaccinated people
-, Virus Name: virus name
-, Mortality Rate: mortality rate
-, Reproductive Rate: repro rate
+=====================
+Stats of the virus
+---------------------
+Virus name: Snapple 
+Population size: 100000 
+Vaccination Percentage: 0.4 
+Mortality Rate: 0.2
+Basic reproduction number: 0.3
+=====================
+Time step number 10 ended, beginning 11 
+Random number 0.6394267984578837 - Virus Repro Rate 0.2
+Person 1 did not infect Person 2 because they got luckyyyyy

@@ -82,31 +82,40 @@ class Simulation(object):
                 self.interaction(rand_person, rand_infected_person)
                 tot_interactions += 1
 
+    def append_newly_infected(self, random_person):
+        if random_person.is_vaccinated() == False:
+            num = random.randint(0, 1)
+            if num < self.virus.repro_rate:
+                self.newly_infected.append(random_person._id)
+                random_person.infection = virus
+
     def interaction(self, person, random_person):
         # Assert statements are to check if
         assert person.is_alive == True
         assert random_person.is_alive == True
 
-        '''This method should be called any time two living people are selected for an
-        interaction. It assumes that only living people are passed in as parameters.
+        # '''This method should be called any time two living people are selected for an
+        # interaction. It assumes that only living people are passed in as parameters.
 
-        Args:
-            person1 (person): The initial infected person
-            random_person (person): The person that person1 interacts with.
-        '''
-        if random_person.is_vaccinated():
-            pass
-        elif random_person.infection == self.virus:
-            pass
-        elif random_person.is_vaccinated() == False:
-            num = random.randint(0, 1)
-            if num < self.virus.repro_rate:
-                self.newly_infected.append(random_person._id)
+        # Args:
+        #     person1 (person): The initial infected person
+        #     random_person (person): The person that person1 interacts with.
+        # '''
+        # self.logger.log_interaction(person, random_person)
+        # self.append_newly_infected(person, random_person)
 
-            # TODO: Finish this method.d
-            #     attribute can be changed to True at the end of the time step.
-            # TODO: Call logger method during this method.
-        pass
+        # # TODO: Finish this method.d
+        # #     attribute can be changed to True at the end of the time step.
+        # # TODO: Call logger method during this method.
+        # pass
+        if person.infection == virus and random_person.infection == virus:
+            self.logger.log_interaction(person, random_person)
+        elif person.infection == virus and random_person.is_vaccinated == True:
+            self.logger.log_interaction(person, random_person)
+        elif person.infection == virus and random_person.is_vaccinated == False:
+            self.logger.log_interaction(person, random_person)
+        else:
+            pass
 
     def _infect_newly_infected(self):
         for person in self.newly_infected:
@@ -130,3 +139,9 @@ if __name__ == "__main__":
     sim = Simulation(pop_size, vacc_percentage, initial_infected, virus)
 
     sim.run()
+
+
+def test_simulation_should_continue():
+    simulation = Simulation(10000, .1)
+    pop_size = 100
+    vacc_percentage = 1
