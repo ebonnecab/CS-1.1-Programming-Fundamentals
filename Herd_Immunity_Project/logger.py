@@ -54,23 +54,23 @@ class Logger:
 
         with open(self.file_name, "a") as file:
 
-                if sick_person and random_vacc_person == None and did_infect == True:
-                    file.writelines(
-                        ["{} infects {} \n because they are not vaccinated.".format(person._id, random_person._id)]
-                    )
+            if sick_person and not random_vacc_person and did_infect == True:
+                file.writelines(
+                    ["{} infects {} \n because they are not vaccinated.".format(person._id, random_person._id)]
+                )
 
-                elif sick_person and random_vacc_person == None and did_infect == False:
-                    file.writelines(
-                        ["{} did not infect {} \n because of good fortune.".format(person._id, random_person._id)]
-                    )
-                elif sick_person and random_vacc_person and did_infect == False:
-                    file.writelines(
-                        ["{} did not infect {} \n they are vaccinated.".format(person._id, random_person._id)]
-                    )
-                elif sick_person and random_sick_person and did_infect == False:
-                    file.writelines (
-                        ["{} did not infect {} \n they are already sick.".format(person._id, random_person._id)]
-                    )
+            elif sick_person and not random_vacc_person and did_infect == False:
+                file.writelines(
+                    ["{} did not infect {} \n because of good fortune.".format(person._id, random_person._id)]
+                )
+            elif sick_person and random_vacc_person and did_infect == False:
+                file.writelines(
+                    ["{} did not infect {} \n they are vaccinated.".format(person._id, random_person._id)]
+                )
+            elif sick_person and random_sick_person and did_infect == False:
+                file.writelines (
+                    ["{} did not infect {} \n they are already sick.".format(person._id, random_person._id)]
+                )
                 
         # TODO: Finish this method. Think about how the booleans passed (or not passed)
         # represent all the possible edge cases. Use the values passed along with each person,
@@ -111,5 +111,4 @@ class Logger:
         # NOTE: Here is an opportunity for a stretch challenge!
         pass
 
-    if __name__ == "__main__":
-        write_metadata("logger", 100, 0.2, "MRSA", 0.2, 0.2 )
+
