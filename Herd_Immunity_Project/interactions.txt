@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 Virus name MerpPop size 1000
+=======
+Population size: pop size
+, Percentage of vaccinated people: vaccinated people
+, Virus Name: virus name
+, Mortality Rate: mortality rate
+, Reproductive Rate: repro rate
+>>>>>>> e32737dd5c705ff9bbe8c69393628b001c42b78a
