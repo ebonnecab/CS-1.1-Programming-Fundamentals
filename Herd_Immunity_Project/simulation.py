@@ -2,7 +2,7 @@ import random
 import sys
 random.seed(42)
 from person import Person
-# from logger import Logger
+from logger import Logger
 from virus import Virus
 
 
@@ -82,7 +82,7 @@ class Simulation(object):
                 self.interaction(rand_person, rand_infected_person)
                 tot_interactions += 1
 
-    def append_newly_infected(self, person, random_person):
+    def append_newly_infected(self, random_person):
         if random_person.is_vaccinated() == False:
             num = random.randint(0, 1)
             if num < self.virus.repro_rate:
@@ -139,3 +139,9 @@ if __name__ == "__main__":
     sim = Simulation(pop_size, vacc_percentage, initial_infected, virus)
 
     sim.run()
+
+
+def test_simulation_should_continue():
+    simulation = Simulation(10000, .1)
+    pop_size = 100
+    vacc_percentage = 1

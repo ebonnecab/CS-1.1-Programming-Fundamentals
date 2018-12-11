@@ -1,7 +1,7 @@
 import pytest
 import random
 from person import Person
-from simulation import Simulation
+from simulation import Simulation as simulation
 from virus import Virus as virus
 
 
@@ -45,11 +45,13 @@ class Logger:
                 ["Person {} did not infect Person{} because they are vaccinated".format(person._id, random_person._id)], "a")
         elif person.infection == virus and random_person.is_vaccinated == False:
             num = random.random()
+            # FIXME: Future EB+WILL? Why does virus not work in here?
             if num < virus.repro_rate:
                 random_person.infection = virus
                 did_infect = True
                 self.append_interaction(["Person {} infected Person {} because they weren't vaccinated\n".format(
                     person._id, random_person._id)], "a")
+
             else:
                 self.append_interaction(["Person {} did not infect Person {} because they got luckyyyyy\n".format(
                     person._id, random_person._id)], "a")
