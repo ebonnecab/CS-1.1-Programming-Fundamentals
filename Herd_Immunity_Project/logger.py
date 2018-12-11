@@ -53,7 +53,6 @@ class Logger:
             vacc_person
 
         '''
-        random_sick_person = random_person.infection == Virus
         random_vacc_person = random_person.is_vaccinated
         with open(self.file_name, "a") as file:
             if person.infection == Virus and not random_vacc_person and did_infect == True:
