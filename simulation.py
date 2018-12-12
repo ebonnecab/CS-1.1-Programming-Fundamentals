@@ -39,6 +39,13 @@ class Simulation(object):
         self.newly_infected = []
 
     def _create_population(self, initial_infected):
+        # Create people based on conditions if they are vaccinaed or notg
+        starting_pop = 0
+        while starting_pop <= self.pop_size:
+            person = Person(self.next_person_id,
+                            is_vaccinated=False, infection=self.virus)
+
+        return self.population
         '''This method will create the initial population.
             Args:
                 initial_infected (int): The number of infected people that the simulation
