@@ -2,13 +2,10 @@
 
 We're going to create a basic simulation of herd immunity by modeling how a virus moves through a population where some (but not all) of a population is vaccinated against this virus.
 
-This ReadMe (project description and specs) is a draft to help you get started on the project and will be updated with more detail as we improve the project and answer questions.
-
 ### Goals
 
 * Finish the code in these files to create a working simulation that creates log files of major events.  
-* Design your program to follow the rules of the simulation.
-* Get your data for virus name, mortality rate, and reproductive rate from [this Guardian article](https://www.theguardian.com/news/datablog/ng-interactive/2014/oct/15/visualised-how-ebola-compares-to-other-infectious-diseases).  
+* Design your program to follow the rules of the simulation.å  
 * During every time step of the simulation, **every sick person** should randomly interact with **100 other people** in the population. The chance of a sick person infecting a person that they interact with is the virus's reproductive rate.  Example: if a virus has a reproductive rate of 15, then, on average, a sick person should infect 15 of the 100 people they interact with during that time step.
 
 #### Rules
@@ -32,9 +29,6 @@ Once you have successfully run a simulation, use your python skills to answer to
 <br>
 *When you have answered these questions, please put your answers in a file called 'answers.txt' and commit this to your repo.*
 
-### Getting Started
-
-To get started on this project, fork this course repo and then clone **your own fork** so you can push your code to GitHub and receive important updates to the code if necessary.  You'll find instructions for what you need to do marked within the files themselves. Anything that you explicitly need to code should be marked with a comment that starts with `#TODO`.  
 
 ### Running the program
 
@@ -55,24 +49,9 @@ separated by spaces:
  `python3 simulation.py 100000 0.90 Ebola 0.70 0.25 10` in the terminal.
 
 ### Basic Structure
-
-The program consists of 4 classes: `Simulation`, `Person`, `Virus`, and `Logger`.
-
-* `Simulation`: Highest level of abstraction. The main class that runs the entire simulation.
-* `Person`: Represents the people that make up the population that the virus is spreading through.
-* `Virus`: Models the properties of the virus we wish to simulate.
-* `Logger`: A helper class for logging all events that happen in the simulation.
+ s
 
 When you run `simulation.py` with the corresponding command-line arguments necessary for a simulation, a simulation object is created.  This simulation object then calls the `.run()` method.  This method should continually check if the simulation needs to run another step using a helper method contained in the class, and then call `.time_step()` if the simulation has not ended yet.  Within the `time_step()` method, you'll find all the logic necessary for actually simulating everything--that is, once you write it.  As is, the file just contains a bunch of method stubs, as well as numerous comments for explaining what you need to do to get everything working.  
-
-### Tips for Success
-
-First, take a look at each of the files.  Get a feel for the methods and attributes in each.  Feel overwhelmed? Don't panic.  Instead, get out a piece of paper or a whiteboard and try to diagram what needs to happen and when using each of the objects and methods. Draw out the data flow.
-
-*_If you don't understand something, talk to your classmates and ask for help!_*
-
-Ask your classmates and teachers for clarification/help/code reviews as needed, or drop in to tutoring hours. Share your questions and insights in the course Slack channel, or book some time to get help from Justin and Phyllis, the course teaching assistants.
-Collaboration is encouraged, but be sure that you typed in all the code yourself and the final project is your own!
 
 *Found a bug or a problem? Contact Alan, Justin, and Phyllis!*
 
@@ -92,9 +71,3 @@ For this project to be considered complete, you need to add your repo link to th
   * `simulation_test.py` file should be created that allows for testing the simulation.
   * Answers to the questions asked above listed in a file named `answers.txt`.
 
-### Stretch Challenges
-
-You'll find some of the smaller, individual stretch challenges contained with the comments of the code on the logger class.  Other stretch challenges include:
-
-  * Extending functionality so that we can test the spread of multiple viruses through a given population at the same time. (Difficulty Level: Hard)
-  * Create a Visualizer class that can spit out visualizations of the spread of the virus based on the log files of a simulation.  HINT: You'll want to use Matplotlib for visualization stuff, because its easy to use and generally awesome at this sort of thing.  You may also want to consider using a library like Pandas for organizing and cleaning your data in a more professional way, especially if you want to visualize answers to more complex questions.  Matplotlib and Pandas play very nicely together! (Difficulty Level: Medium)
