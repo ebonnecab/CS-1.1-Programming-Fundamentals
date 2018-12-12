@@ -22,7 +22,7 @@ class Logger:
         with open(self.file_name, "w") as file:
             file.writelines(data)
 
-    def append_interaction(self, data, mode):
+    def append_interaction(self, data, mode="a"):
         with open("interactions.txt", mode) as file:
             file.writelines(data)
 

@@ -1,1 +1,6 @@
-[]
+[
+  "logger.py::test_write_metadata",
+  "logger.py::test_log_time_step",
+  "logger.py::test_log_infection_survival",
+  "logger.py::test_log_interaction"
+]
