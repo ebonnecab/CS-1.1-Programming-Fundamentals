@@ -43,15 +43,13 @@ class Logger(object):
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
-        call of a Person object's .resolve_infection() method.
-
-        The format of the log should be:
-            "{person.ID} died from infection\n" or "{person.ID} survived infection.\n"
+        call of a Person object's .did_survive_infection() method
         '''
-        # TODO: Finish this method. If the person survives, did_die_from_infection
-        # should be False.  Otherwise, did_die_from_infection should be True.
-        # Append the results of the infection to the logfile
-        pass
+        if did_die_from_infection:
+            self.add_to_file(
+                "{} died from infection\n".format(person._id), "a")
+        else:
+            self.add_to_file("{} survived infection\n", "a")
 
     def log_time_step(self, time_step_number):
         # Fix this in simulation
