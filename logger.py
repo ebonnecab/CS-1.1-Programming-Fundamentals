@@ -30,12 +30,12 @@ class Logger(object):
             self.add_to_file("Person {} infected Person {}!\n".format(
                 person._id, random_person._id), "a")
         else:
-            self.add_to_file("Person {} did not infect Person{}!".format(
+            self.add_to_file("Person {} did not infect Person{}!\n".format(
                 person._id, random_person._id), "a")
             if random_person_vacc:
-                self.add_to_file(" This person was vaccinated!", "a")
+                self.add_to_file(" This person was vaccinated!\n", "a")
             elif random_person_sick:
-                self.add_to_file(" This person was already sick!", "a")
+                self.add_to_file(" This person was already sick!\n", "a")
             self.add_to_file("\n", "a")
 
     def log_infection_survival(self, person, did_die_from_infection):
@@ -51,7 +51,7 @@ class Logger(object):
 
     def log_time_step(self, time_step_number):
         # Fix this in simulation
-        self.add_to_file("Time step {} ended, beginning {}".format(
+        self.add_to_file("Time step {} ended, beginning {}\n".format(
             time_step_number, time_step_number + 1), "a")
 
     def add_to_file(self, data, mode):

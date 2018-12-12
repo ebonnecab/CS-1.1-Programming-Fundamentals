@@ -15,12 +15,11 @@ class Person(object):
         self.infection = infection
 
     def did_survive_infection(self):
-        if random.random() > self.infection.mortality_rate:
-            self.infection = None
-            self.is_vaccinated = True
-            return self.is_alive
-        else:
-            self.alive = False
+        if self.infection != None:
+            if random.random() < self.infection.mortality_rate:
+                return False
+            else:
+                return True
 
 
 ''' These are simple tests to ensure that you are instantiating your Person class correctly. '''
