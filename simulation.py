@@ -90,19 +90,33 @@ class Simulation(object):
         pass
 
     def time_step(self):
-        ''' This method should contain all the logic for computing one time step
-        in the simulation.
 
-        This includes:
-            1. 100 total interactions with a randon person for each infected person
-                in the population
-            2. If the person is dead, grab another random person from the population.
-                Since we don't interact with dead people, this does not count as an interaction.
-            3. Otherwise call simulation.interaction(person, random_person) and
-                increment interaction counter by 1.
-            '''
-        # TODO: Finish this method.
-        pass
+        healthy_people = []
+        infected_people = []
+
+        # Seperates the sick/healthy ppl
+        for person in self.population:
+            if person.infection:
+                infected_people.append(person)
+            else:
+                healthy_people.append(person)
+
+        # Every infected interacts with 100 random people
+        for person in infected_people:
+            for _ in range(100):
+                self.interaction(person, random.choice(healthy_people))
+
+        for person in infected_people:
+            if person.did_survive_infection:
+                self.logger.log_infection_survival(
+                    person, did_die_from_infection=False)
+            else:
+                self.logger.log_infection_survival(
+                    person, did_die_from_infection=True)
+
+        just_died = 0
+        self.total_dead += just_died
+        self._infect_newly_infected()
 
     def interaction(self, person, random_person):
         '''

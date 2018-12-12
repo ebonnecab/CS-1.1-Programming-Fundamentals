@@ -5,6 +5,7 @@ from person import Person
 import random
 
 
+# Works
 def test_interaction():
     simulation = Simulation(1000, 0.2, Virus("Snapple", 0.2, 0.4))
     simulation.logger.file_name = 'test_interaction.txt'
@@ -13,7 +14,3 @@ def test_interaction():
     person = Person(1, False, simulation.virus)
     rand_person = Person(2, vacc_options, simulation.virus)
     simulation.interaction(person, rand_person)
-
-
-for _ in range(20):
-    test_interaction()
