@@ -1,15 +1,10 @@
 class Logger(object):
     ''' Utility class responsible for logging all interactions during the simulation. '''
-    # TODO: Write a test suite for this class to make sure each method is working
-    # as expected.
-
-    # PROTIP: Write your tests before you solve each function, that way you can
-    # test them one by one as you write your class.
 
     def __init__(self, file_name):
         # TODO:  Finish this initialization method. The file_name passed should be the
         # full file name of the file that the logs will be written to.
-        self.file_name = None
+        self.file_name = file_name
 
     def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
                        basic_repro_num):
@@ -17,6 +12,10 @@ class Logger(object):
         The simulation class should use this method immediately to log the specific
         parameters of the simulation as the first line of the file.
         '''
+        dividors = "==========================="
+        data = "{}\nVirus name: {}\nReproduction number: {}\nVaccination percentage: {}\nMortality rate: {}\nPopulation number: {}\n{}\n".format(
+            dividors,                                                                                           virus_name, basic_repro_num, vacc_percentage, mortality_rate, pop_size, dividors)
+        self.add_to_file(data, "w")
         # TODO: Finish this method. This line of metadata should be tab-delimited
         # it should create the text file that we will store all logs in.
         # TIP: Use 'w' mode when you open the file. For all other methods, use
@@ -55,6 +54,7 @@ class Logger(object):
         pass
 
     def log_time_step(self, time_step_number):
+        pass
         ''' STRETCH CHALLENGE DETAILS:
 
         If you choose to extend this method, the format of the summary statistics logged
@@ -67,9 +67,12 @@ class Logger(object):
             The total number of dead, including those that died during this time step.
 
         The format of this log should be:
-            "Time step {time_step_number} ended, beginning {time_step_number + 1}\n"
+            Time step {time_step_number} ended, beginning {time_step_number + 1}\n
         '''
         # TODO: Finish this method. This method should log when a time step ends, and a
         # new one begins.
         # NOTE: Here is an opportunity for a stretch challenge!
-        pass
+
+    def add_to_file(self, data, mode):
+        with open(self.file_name, mode) as file:
+            file.writelines(list(data))
