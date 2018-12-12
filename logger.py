@@ -54,24 +54,9 @@ class Logger(object):
         pass
 
     def log_time_step(self, time_step_number):
-        pass
-        ''' STRETCH CHALLENGE DETAILS:
-
-        If you choose to extend this method, the format of the summary statistics logged
-        are up to you.
-
-        At minimum, it should contain:
-            The number of people that were infected during this specific time step.
-            The number of people that died on this specific time step.
-            The total number of people infected in the population, including the newly infected
-            The total number of dead, including those that died during this time step.
-
-        The format of this log should be:
-            Time step {time_step_number} ended, beginning {time_step_number + 1}\n
-        '''
-        # TODO: Finish this method. This method should log when a time step ends, and a
-        # new one begins.
-        # NOTE: Here is an opportunity for a stretch challenge!
+        # Fix this in simulation
+        self.add_to_file("Time step {} ended, beginning {}".format(
+            time_step_number, time_step_number + 1), "a")
 
     def add_to_file(self, data, mode):
         with open(self.file_name, mode) as file:

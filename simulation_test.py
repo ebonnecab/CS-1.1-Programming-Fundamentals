@@ -15,3 +15,8 @@ def test_add_to_file():
 def test_write_metadeta():
     logger = Logger('test_meta.txt')
     logger.write_metadata(100, 0.2, "Snapple", 0.3, 0.4)
+
+
+def test_log_time_step():
+    logger = Logger("time_step.txt")
+    logger.log_time_step(1)
