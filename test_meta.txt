@@ -1,7 +1,0 @@
-===========================
-Virus name: Snapple
-Reproduction number: 0.4
-Vaccination percentage: 0.2
-Mortality rate: 0.3
-Population number: 100
-===========================

@@ -109,14 +109,15 @@ class Simulation(object):
             person1 (person): The initial infected person
             random_person (person): The person that person1 interacts with.
         '''
-        # Assert statements are included to make sure that only living people are passed
-        # in as params
         assert person.is_alive == True
         assert random_person.is_alive == True
+
+        # Checking if the random person is healthy
         if random_person.is_vaccinated:
             self.logger.log_interaction(
                 person, random_person, random_person_vacc=True, did_infect=False)
 
+        # Already sick, can't get sick again!
         elif random_person.infection is self.virus or random_person._id in self.newly_infected:
             self.logger.log_interaction(
                 person, random_person, random_person_sick=True)
@@ -126,7 +127,7 @@ class Simulation(object):
             if random.random() <= self.virus.repro_rate:
                 self.newly_infected.append(random_person._id)
                 self.logger.log_interaction(
-                    person, random_person, did_infect=True)
+                    person, random_person, did_infect=True,)
             else:
                 self.logger.log_interaction(
                     person, random_person, did_infect=False)

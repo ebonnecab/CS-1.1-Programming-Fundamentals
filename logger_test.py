@@ -43,4 +43,4 @@ def test_log_interaction():
     rand_person = Person(2, vacc_options, virus_options)
     logger = Logger("test_interactions")
     logger.log_interaction(person, rand_person,
-                           did_infect=False, random_person_sick=True)
+                           did_infect=True, random_person_sick=False)

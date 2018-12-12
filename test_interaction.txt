@@ -1,0 +1,21 @@
+Person 1 did not infect Person2! This person was vaccinated!
+Person 1 did not infect Person2! This person was already sick!
+Person 1 did not infect Person2! This person was vaccinated!
+Person 1 did not infect Person2! This person was vaccinated!
+Person 1 did not infect Person2! This person was already sick!
+Person 1 did not infect Person2! This person was vaccinated!
+Person 1 did not infect Person2! This person was vaccinated!
+Person 1 did not infect Person2! This person was vaccinated!
+Person 1 did not infect Person2! This person was already sick!
+Person 1 did not infect Person2! This person was already sick!
+Person 1 did not infect Person2! This person was vaccinated!
+Person 1 did not infect Person2! This person was already sick!
+Person 1 did not infect Person2! This person was already sick!
+Person 1 did not infect Person2! This person was vaccinated!
+Person 1 did not infect Person2! This person was vaccinated!
+Person 1 did not infect Person2! This person was already sick!
+Person 1 did not infect Person2! This person was already sick!
+Person 1 did not infect Person2! This person was already sick!
+Person 1 did not infect Person2! This person was already sick!
+Person 1 did not infect Person2! This person was already sick!
+Person 1 did not infect Person2! This person was already sick!

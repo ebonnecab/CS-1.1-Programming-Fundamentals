@@ -27,10 +27,10 @@ class Logger(object):
     def log_interaction(self, person, random_person, random_person_sick=None,
                         random_person_vacc=None, did_infect=None):
         if did_infect:
-            self.add_to_file("Person {} infected {}!\n".format(
+            self.add_to_file("Person {} infected Person {}!\n".format(
                 person._id, random_person._id), "a")
         else:
-            self.add_to_file("Person {} did not infect {}!".format(
+            self.add_to_file("Person {} did not infect Person{}!".format(
                 person._id, random_person._id), "a")
             if random_person_vacc:
                 self.add_to_file(" This person was vaccinated!", "a")
