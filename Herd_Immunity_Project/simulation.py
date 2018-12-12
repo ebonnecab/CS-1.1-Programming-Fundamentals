@@ -99,20 +99,6 @@ class Simulation(object):
         assert person.is_alive == True
         assert random_person.is_alive == True
 
-        # '''This method should be called any time two living people are selected for an
-        # interaction. It assumes that only living people are passed in as parameters.
-
-        # Args:
-        #     person1 (person): The initial infected person
-        #     random_person (person): The person that person1 interacts with.
-        # '''
-        # self.logger.log_interaction(person, random_person)
-        # self.append_newly_infected(person, random_person)
-
-        # # TODO: Finish this method.d
-        # #     attribute can be changed to True at the end of the time step.
-        # # TODO: Call logger method during this method.
-        # pass
         if person.infection == virus and random_person.infection == virus:
             self.logger.log_interaction(person, random_person)
         elif person.infection == virus and random_person.is_vaccinated == True:
