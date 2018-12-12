@@ -1,3 +1,10 @@
+===========================
+Virus name: Snapple
+Reproduction number: 0.1
+Vaccination percentage: 0.2
+Mortality rate: 0.2
+Population number: 200
+===========================
 Person 0 died from infection
 Person 1 survived infection
 Person 2 survived infection
