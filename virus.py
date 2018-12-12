@@ -1,3 +1,6 @@
+
+
+# Done
 class Virus(object):
     '''Properties and attributes of the virus used in Simulation.'''
 
