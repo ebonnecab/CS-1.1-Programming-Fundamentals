@@ -1,7 +1,7 @@
-import pytest
+# import pytest
 import random
 from person import Person
-from simulation import Simulation as simulation
+# from simulation import Simulation as simulation
 from virus import Virus as virus
 
 

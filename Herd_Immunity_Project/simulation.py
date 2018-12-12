@@ -2,7 +2,7 @@ import random
 import sys
 random.seed(42)
 from person import Person
-# from logger import Logger
+from logger import Logger
 from virus import Virus
 
 
@@ -16,7 +16,7 @@ class Simulation(object):
     '''
 
     def __init__(self, pop_size, vacc_percentage, initial_infected=1, virus=None):
-        # self.logger = Logger("interactions.txt")
+        self.logger = Logger("interactions.txt")
         self.population = []  # List of Person objects
         self.pop_size = pop_size  # Int
         self.next_person_id = 0
@@ -38,8 +38,7 @@ class Simulation(object):
             start += 1
             first_id += 1
         self.set_infected()
-        return self.population
-
+        print (self.population)
 
     def set_infected(self):
         infected = random.sample(self.population, self.initial_infected)
@@ -135,7 +134,7 @@ if __name__ == "__main__":
     virus = Virus("Ebola", 0.2, 0.4)
     initial_infected = 3
     sim = Simulation(pop_size, vacc_percentage, initial_infected, virus)
-    x = sim._create_population()
+    sim._create_population()
     sim.set_infected()
 
     # params = sys.argv[1:]
