@@ -49,7 +49,7 @@ class Logger(object):
             self.add_to_file(
                 "{} died from infection\n".format(person._id), "a")
         else:
-            self.add_to_file("{} survived infection\n", "a")
+            self.add_to_file("{} survived infection\n".format(person._id), "a")
 
     def log_time_step(self, time_step_number):
         # Fix this in simulation

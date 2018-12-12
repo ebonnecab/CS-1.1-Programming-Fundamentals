@@ -20,3 +20,13 @@ def test_write_metadeta():
 def test_log_time_step():
     logger = Logger("time_step.txt")
     logger.log_time_step(1)
+
+
+def test_log_infection_survival():
+    from person import Person
+    from virus import Virus
+    logger = Logger("infection_survival.txt")
+    virus = Virus("Bookworm", 0.3, 0.4)
+    person = Person(1, False, virus)
+    still_alive = person.did_survive_infection()
+    logger.log_infection_survival(person, did_die_from_infection=still_alive)
