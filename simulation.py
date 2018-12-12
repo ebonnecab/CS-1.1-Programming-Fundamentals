@@ -23,8 +23,6 @@ class Simulation(object):
         All arguments will be passed as command-line arguments when the file is run.
         HINT: Look in the if __name__ == "__main__" function at the bottom.
         '''
-        # TODO: Call self._create_population() and pass in the correct parameters.
-        # Store the array that this method will return in the self.population attribute.
         # TODO: Store each newly infected person's ID in newly_infected attribute.
         # At the end of each time step, call self._infect_newly_infected()
         # and then reset .newly_infected back to an empty list.
@@ -107,10 +105,7 @@ class Simulation(object):
         pass
 
     def interaction(self, person, random_person):
-        '''This method should be called any time two living people are selected for an
-        interaction. It assumes that only living people are passed in as parameters.
-
-        Args:
+        '''
             person1 (person): The initial infected person
             random_person (person): The person that person1 interacts with.
         '''
@@ -118,28 +113,30 @@ class Simulation(object):
         # in as params
         assert person.is_alive == True
         assert random_person.is_alive == True
+        if random_person.is_vaccinated:
+            self.logger.log_interaction(
+                person, random_person, random_person_vacc=True, did_infect=False)
 
-        # TODO: Finish this method.
-        #  The possible cases you'll need to cover are listed below:
-        # random_person is vaccinated:
-        #     nothing happens to random person.
-        # random_person is already infected:
-        #     nothing happens to random person.
-        # random_person is healthy, but unvaccinated:
-        #     generate a random number between 0 and 1.  If that number is smaller
-        #     than repro_rate, random_person's ID should be appended to
-        #     Simulation object's newly_infected array, so that their .infected
-        #     attribute can be changed to True at the end of the time step.
-        # TODO: Call slogger method during this method.
-        pass
+        elif random_person.infection is self.virus or random_person._id in self.newly_infected:
+            self.logger.log_interaction(
+                person, random_person, random_person_sick=True)
+
+        else:
+            # This is when a healthy person can get sick
+            if random.random() <= self.virus.repro_rate:
+                self.newly_infected.append(random_person._id)
+                self.logger.log_interaction(
+                    person, random_person, did_infect=True)
+            else:
+                self.logger.log_interaction(
+                    person, random_person, did_infect=False)
 
     def _infect_newly_infected(self):
-        ''' This method should iterate through the list of ._id stored in self.newly_infected
-        and update each Person object with the disease. '''
-        # TODO: Call this method at the end of every time step and infect each Person.
-        # TODO: Once you have iterated through the entire list of self.newly_infected, remember
-        # to reset self.newly_infected back to an empty list.
-        pass
+        for person in self.newly_infected:
+            person.infection = self.virus
+        self.current_infected = len(self.newly_infected)
+        self.total_infected += self.current_infected
+        self.newly_infected = []
 
 
 if __name__ == "__main__":
@@ -154,7 +151,7 @@ if __name__ == "__main__":
     if len(params) == 6:
         initial_infected = int(params[5])
 
-    virus = Virus(name, repro_rate, mortality_rate)
+    virus = Virus(virus_name, repro_num, mortality_rate)
     sim = Simulation(pop_size, vacc_percentage, initial_infected, virus)
 
     sim.run()

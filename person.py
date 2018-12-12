@@ -25,6 +25,9 @@ class Person(object):
 
 ''' These are simple tests to ensure that you are instantiating your Person class correctly. '''
 
+person = Person(1, False, Virus("Snapple", 0.2, 0.4))
+print(person.infection)
+
 
 def test_vacc_person_instantiation():
     # create some people to test if our init method works as expected
