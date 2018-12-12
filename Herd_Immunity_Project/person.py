@@ -1,5 +1,5 @@
 import random
-import pytest
+# import pytest
 from virus import Virus
 
 

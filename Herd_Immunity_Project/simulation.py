@@ -28,20 +28,23 @@ class Simulation(object):
         self.total_dead = 0  # Int
         self.newly_infected = []
 
-    def _create_population(self, initial_infected):
+    def _create_population(self):
         is_vacc_options = [True, False]
-        infection_options = [None, self.virus]
         start = 0
         first_id = 0
         while start <= self.pop_size:
-            person = Person(first_id, random.choice(is_vacc_options),
-                            random.choice(infection_options))
+            person = Person(first_id, random.choice(is_vacc_options))
             self.population.append(person)
             start += 1
             first_id += 1
-        
-
+        self.set_infected()
         return self.population
+
+
+    def set_infected(self):
+        infected = random.sample(self.population, self.initial_infected)
+        for sick_people in infected:
+            sick_people.infection = self.virus
 
     def _simulation_should_continue(self):
         while self.pop_size > 0 or not self.vacc_percentage == 1:
@@ -101,10 +104,6 @@ class Simulation(object):
         # Assert statements are to check if
         assert person.is_alive == True
         assert random_person.is_alive == True
-<<<<<<< HEAD
-
-=======
->>>>>>> a25d0038052689c34d8a30f082f81a697859f66a
         if person.infection == virus and random_person.infection == virus:
             self.logger.log_interaction(person, random_person)
             self.check_dead(random_person)
@@ -131,12 +130,13 @@ class Simulation(object):
 
 
 if __name__ == "__main__":
-    pop_size = 10000
+    pop_size = 150
     vacc_percentage = 0.3
     virus = Virus("Ebola", 0.2, 0.4)
-    initial_infected = 1
+    initial_infected = 3
     sim = Simulation(pop_size, vacc_percentage, initial_infected, virus)
-    sim._create_population(1)
+    x = sim._create_population()
+    sim.set_infected()
 
     # params = sys.argv[1:]
     # virus_name = str(params[0])
