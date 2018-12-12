@@ -1,21 +1,4 @@
-1 died from infection
-1 survived infection
-1 survived infection
-1 survived infection
-1 died from infection
-1 died from infection
-1 died from infection
-1 survived infection
-1 died from infection
-1 survived infection
-1 survived infection
-1 died from infection
-1 survived infection
-1 survived infection
-1 died from infection
-1 died from infection
-1 survived infection
-1 died from infection
-1 died from infection
-1 survived infection
-1 died from infection
+Person 1 died from infection
+Person 1 died from infection
+Person 1 died from infection
+Person 1 died from infection

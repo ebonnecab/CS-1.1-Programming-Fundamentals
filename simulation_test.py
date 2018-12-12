@@ -1,5 +1,6 @@
 import pytest
 from logger import Logger
+import random
 
 
 def test_init_logger():
@@ -30,3 +31,16 @@ def test_log_infection_survival():
     person = Person(1, False, virus)
     still_alive = person.did_survive_infection()
     logger.log_infection_survival(person, did_die_from_infection=still_alive)
+
+
+def test_log_interaction():
+    from person import Person
+    from virus import Virus
+    virus = Virus("Bookworm", 0.3, 0.4)
+    vacc_options = random.choice([True, False])
+    virus_options = random.choice([None, virus])
+    person = Person(1, False, virus)
+    rand_person = Person(2, vacc_options, virus_options)
+    logger = Logger("test_interactions")
+    logger.log_interaction(person, rand_person,
+                           did_infect=False, random_person_sick=True)

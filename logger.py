@@ -26,20 +26,17 @@ class Logger(object):
 
     def log_interaction(self, person, random_person, random_person_sick=None,
                         random_person_vacc=None, did_infect=None):
-        '''
-        The Simulation object should use this method to log every interaction
-        a sick person has during each time step.
-
-        The format of the log should be: "{person.ID} infects {random_person.ID} \n"
-
-        or the other edge cases:
-            "{person.ID} didn't infect {random_person.ID} because {'vaccinated' or 'already sick'} \n"
-        '''
-        # TODO: Finish this method. Think about how the booleans passed (or not passed)
-        # represent all the possible edge cases. Use the values passed along with each person,
-        # along with whether they are sick or vaccinated when they interact to determine
-        # exactly what happened in the interaction and create a String, and write to your logfile.
-        pass
+        if did_infect:
+            self.add_to_file("Person {} infected {}!\n".format(
+                person._id, random_person._id), "a")
+        else:
+            self.add_to_file("Person {} did not infect {}!".format(
+                person._id, random_person._id), "a")
+            if random_person_vacc:
+                self.add_to_file(" This person was vaccinated!", "a")
+            elif random_person_sick:
+                self.add_to_file(" This person was already sick!", "a")
+            self.add_to_file("\n", "a")
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
@@ -47,9 +44,10 @@ class Logger(object):
         '''
         if did_die_from_infection:
             self.add_to_file(
-                "{} died from infection\n".format(person._id), "a")
+                "Person {} died from infection\n".format(person._id), "a")
         else:
-            self.add_to_file("{} survived infection\n".format(person._id), "a")
+            self.add_to_file(
+                "Person {} survived infection\n".format(person._id), "a")
 
     def log_time_step(self, time_step_number):
         # Fix this in simulation
