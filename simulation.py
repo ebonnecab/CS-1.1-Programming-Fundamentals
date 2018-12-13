@@ -54,16 +54,20 @@ class Simulation(object):
         ''' This method should run the simulation until all requirements for ending
         the simulation are met.
         '''
-        should_continue = self._simulation_should_continue()
-        time_step_counter = 0
+        # should_continue = self._simulation_should_continue()
+        # time_step_counter = 0
         self.time_step()
 
-        while should_continue:
-            self.time_step()
-            self.logger.log_time_step(time_step_counter)
-            time_step_counter += 1
-        self.logger.add_to_file(
-            "'The simulation has ended after {time_step_counter} turns.'.format(time_step_counter)", "a")
+        # TODO: Keep track of the number of time steps that have passed.
+        # HINT: You may want to call the logger's log_time_step() method at the end of each time step.
+        # TODO: Set this variable using a helper
+
+        # while should_continue:
+        #     self.time_step()
+        #     self.logger.log_time_step(time_step_counter)
+        #     time_step_counter += 1
+        # self.logger.add_to_file(
+        #     "'The simulation has ended after {time_step_counter} turns.'.format(time_step_counter)", "a")
 
     def choose_infected(self):
         return random.choice(self.newly_infected)
